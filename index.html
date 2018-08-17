@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Indoor Map</title>
+		<link rel="stylesheet" href="assets/styles/reset.css">
+		<link rel="stylesheet" href="assets/styles/style.css">
+		<script src="assets/scripts/jquery-3.3.1.min.js"></script>
+		<script src="assets/scripts/jquery-ui.min.js"></script>
+		<script src="assets/scripts/scripts.js"></script>
+	</head>
+	<body>
+		<div class="map-menu">
+			<p>
+				<span id="outer-posX"></span><br/>
+				<span id="outer-posY"></span><br/><br/>
+				<span id="inner-posX"></span><br/>
+				<span id="inner-posY"></span><br/>
+			</p>
+		</div>
+		<div class="map-view">
+			<div class="map-container" data-zoom="1">
+				<img class="map-bg" src="assets/images/example-image.jpg" width="1920" height="1200" />
+				<span class="center-testing-inner" ></span>
+			</div>
+			<ul class="scroll-tool">
+				<li class="zoom-in">+</li>
+				<li class="zoom-out">-</li>
+			</ul>
+		</div>
+		<span class="center-testing-outer" ></span>
+	</body>
+</html>

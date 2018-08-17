@@ -1,0 +1,89 @@
+* {box-sizing:border-box;}
+html,body { height:100%; }
+body {
+	position:relative;
+}
+
+.psudo-table {
+	display:table;
+	width:100%;
+	height:100%;
+}
+
+.psudo-table-cell {
+	display:table-cell;
+	vertical-align:middle;
+}
+
+.map-menu {
+	width:32%;
+	height:100%;
+	float:left;
+	border-right:5px solid black;
+}
+
+.map-view {
+	width:68%;
+	height:100%;
+	background:#52565e;
+	float:right;
+	overflow:hidden;
+	position:relative;
+}
+
+.map-container {
+	/*position:absolute;*/
+	/*transform:scale(1);*/
+	transition: transform 1s linear;
+	transform-origin: top left;
+	transform-style: preserve-3D;
+	transform-origin:center;
+}
+
+.center-testing-outer {
+	display:block;
+	width:10px;
+	height:10px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	background:red;
+	border-radius:100%;
+}
+
+.center-testing-inner {
+	display:block;
+	width:10px;
+	height:10px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	background:green;
+	border-radius:100%;
+}
+
+.map-bg {
+	/*position:absolute;*/
+}
+
+.rotate {
+	transform: rotate(360deg);
+}
+
+
+.scroll-tool {
+	position:absolute;
+	bottom:20px;
+	right:20px;
+	z-index:1;
+	background:#fff;
+}
+.scroll-tool li {
+	padding:10px;
+	text-align:center;
+	cursor:pointer;
+}
+
+.scroll-tool li:hover {
+	background:#aaa;
+}
