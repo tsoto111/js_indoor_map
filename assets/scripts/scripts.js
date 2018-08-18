@@ -21,17 +21,6 @@
 		$map_view_w = $('.map-view')[0].getBoundingClientRect().width;
 		$map_view_h = $('.map-view')[0].getBoundingClientRect().height;
 		
-		//position image by center point!
-		
-		console.log($('.map-view').offset());
-		console.log($('.map-bg').offset());
-		
-		$('#outer-posX').text('outer x: ' + $('.map-view').offset().left);
-		$('#outer-posY').text('outer y: ' + $('.map-view').offset().top);
-		
-		$('#inner-posX').text('Inner x: ' + $('.map-container').offset().left);
-		$('#inner-posY').text('Inner y: ' + $('.map-container').offset().top);
-		
 		$map_x_center = $map_view_w / 2;
 		$map_y_center = $map_view_h / 2;
 		
@@ -41,18 +30,12 @@
 		$center_inner_x = $map_x_center;
 		$center_inner_y = $map_y_center;
 		
+		$('.map-container').attr('style','transform-origin: ' + $center_inner_x + 'px ' + $center_inner_y + 'px;')
+		
+		//Testing Transform Origin on load!
 		$('.center-testing-outer').attr('style','top:' + $center_y + 'px; left:' + $center_x + 'px;');
 		$('.center-testing-inner').attr('style','top:' + $center_inner_y + 'px; left:' + $center_inner_x + 'px;');
 		
-		$('.map-container').attr('style','transform-origin: ' + $center_inner_x + 'px ' + $center_inner_y + 'px;')
-		
-		//$('.map-bg').css('marginTop',-$bg_image_x_center).css('marginLeft',-$bg_image_y_center);
-		
-		/*
-		$('.map-container')
-			.width($bg_image_w)
-			.height($bg_image_h);
-		*/
 		
 		$('.map-container').draggable({
 			drag: function(){
@@ -60,20 +43,23 @@
 				var xPos = offset.left;
 				var yPos = offset.top;
 				
-				var $parent_offset = $(this).parent().offset();
-				console.log("center y: " + $('.center-testing-inner')[0].getBoundingClientRect().top);
-				console.log("center x: " + $('.center-testing-inner')[0].getBoundingClientRect().left);
-				console.log("y: " + $(this).css('top'));
-				console.log("x: " + $(this).css('left'));
+				//Keep track of transform origin!!!
+				var zoom_scale = $(this).attr('data-zoom');
+				var $parent_offset = $(this).parent().offset();				
+				var x_difference = (xPos - $parent_offset.left);
+				var y_difference = (yPos - $parent_offset.top);
+				var true_center_x = ($center_inner_x - x_difference) / zoom_scale;
+				var true_center_y = ($center_inner_y - y_difference) / zoom_scale;
 				
-				//Stay centered? 
-				console.log("True Center y: " + (parseInt($('.center-testing-inner')[0].getBoundingClientRect().top,10) - parseInt($(this).css('top'),10)));
-				console.log("True Center x: " + (parseInt($('.center-testing-inner')[0].getBoundingClientRect().left,10) - parseInt($(this).css('left'),10)));
+				//Set transform origin on drag! (zoom from center of map viewport)
+				$('.map-container')
+					.css({'transform-origin': true_center_x + 'px ' +  true_center_y + "px"});
 				
-				//$('.center-testing-inner').attr('style','left:' + () + '; top:' + () + ';')
+				/* This is for testing transform origin!!!*/
+				$('.center-testing-inner')
+					.css('left',true_center_x)
+					.css('top',true_center_y);
 				
-				$('#inner-posX').text('Inner x: ' + (xPos - $parent_offset.left));
-				$('#inner-posY').text('Inner y: ' + (yPos - $parent_offset.top));
 				
 			}
 		});
@@ -91,15 +77,11 @@
 				$new_zoom_size = 1;
 			}
 			
-			$('.map-container').toggleClass('rotate');
+			//$('.map-container').toggleClass('rotate');
 			
-			//Target center of map-container!!!
-			
-			/*
 			$('.map-container')
 				.css('transform','scale(' + $new_zoom_size + ')')
 				.attr('data-zoom',$new_zoom_size);
-			*/
 			
 		});
 		
@@ -114,17 +96,13 @@
 				$new_zoom_size = 1;
 			}
 			
-			//Target center of map-container!!!
-			console.log($('.map-container').offset());
+			//$('.map-container').toggleClass('rotate');
 			
 			
-			$('.map-container').toggleClass('rotate');
-			
-			/*
 			$('.map-container')
 				.css('transform','scale(' + $new_zoom_size + ')')
 				.attr('data-zoom',$new_zoom_size);
-			*/
+			
 			
 		});
 		
