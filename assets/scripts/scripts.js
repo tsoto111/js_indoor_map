@@ -2,9 +2,8 @@
 	
 	$(document).ready(function(){
 		console.log('On Document Ready!');
-		
 		init_map_container();
-		zoom_funks();
+		//zoom_funks();
 		
 	});
 	
@@ -17,96 +16,130 @@
 	====================================================*/
 	function init_map_container() {
 		
-		//Get BG Image W and H
-		$map_view_w = $('.map-view')[0].getBoundingClientRect().width;
-		$map_view_h = $('.map-view')[0].getBoundingClientRect().height;
-		
-		$map_x_center = $map_view_w / 2;
-		$map_y_center = $map_view_h / 2;
-		
-		$center_x = $('.map-view').offset().left + $map_x_center;
-		$center_y = $('.map-view').offset().top + $map_y_center;
-		
-		$center_inner_x = $map_x_center;
-		$center_inner_y = $map_y_center;
-		
-		$('.map-container').attr('style','transform-origin: ' + $center_inner_x + 'px ' + $center_inner_y + 'px;')
-		
-		//Testing Transform Origin on load!
-		$('.center-testing-outer').attr('style','top:' + $center_y + 'px; left:' + $center_x + 'px;');
-		$('.center-testing-inner').attr('style','top:' + $center_inner_y + 'px; left:' + $center_inner_x + 'px;');
-		
-		
-		$('.map-container').draggable({
-			drag: function(){
-				var offset = $(this).offset();
-				var xPos = offset.left;
-				var yPos = offset.top;
+		$map_elements = [
+			{
+				id:"background",
+				type:"circle", 
+				x: 0, 
+				y: 0, 
+				radius: "10000", 
+				rotate:0, 
+				fill:"white"
+			},
+			{
+				id:"table-1",
+				type:"circle", 
+				x: 428, 
+				y: 168, 
+				radius: "10", 
+				rotate:0, 
+				fill:"red"
+			},
+			{
+				id:"table-1",
+				type:"circle", 
+				x: 388, 
+				y: 210, 
+				radius: "10", 
+				rotate:0, 
+				fill:"blue"
+			},
+			{
+				id:"table-1",
+				type:"circle", 
+				x: 388, 
+				y: 265, 
+				radius: "10", 
+				rotate:0, 
+				fill:"blue"
+			},
+			{
+				id:"table-1",
+				type:"circle", 
+				x: 388, 
+				y: 335, 
+				radius: "10", 
+				rotate:0, 
+				fill:"green"
+			},
+			{
+				id:"table-1",
+				type:"circle", 
+				x: 388, 
+				y: 389, 
+				radius: "10", 
+				rotate:0, 
+				fill:"yellow"
+			},
+			{
+				id:"table-8",
+				type:"circle", 
+				x: 677, 
+				y: 270, 
+				radius: "20", 
+				rotate:0, 
+				fill:"orange"
+			}
+		]
 				
-				//Keep track of transform origin!!!
-				var zoom_scale = $(this).attr('data-zoom');
-				var $parent_offset = $(this).parent().offset();				
-				var x_difference = (xPos - $parent_offset.left);
-				var y_difference = (yPos - $parent_offset.top);
-				var true_center_x = ($center_inner_x - x_difference) / zoom_scale;
-				var true_center_y = ($center_inner_y - y_difference) / zoom_scale;
-				
-				//Set transform origin on drag! (zoom from center of map viewport)
-				$('.map-container')
-					.css({'transform-origin': true_center_x + 'px ' +  true_center_y + "px"});
-				
-				/* This is for testing transform origin!!!*/
-				$('.center-testing-inner')
-					.css('left',true_center_x)
-					.css('top',true_center_y);
-				
-				
+		var draw = SVG('map-view-container');
+		var group = draw.group();
+		
+		//Calulate Position on hover
+		draw.mousemove(function($evt) {		
+			$('.svg-coords')
+				.text('Coords: x:' + $evt.offsetX + ' y:' + $evt.offsetY);
+		});
+		
+		//Show hide position on map hover in and out
+		$('#map-view-container svg').hover(function(evt){
+			$('.svg-coords').css('visibility','visible');
+		},function(evt){
+			$('.svg-coords').css('visibility','hidden');
+		});
+		
+		//Draw Tables
+		$.each($map_elements,function($index,$elem){
+			switch($elem.type){
+				case "circle":
+					$circle = draw
+						.circle()
+						.addClass($elem.id)
+						.radius($elem.radius)
+						.move($elem.x - $elem.radius, $elem.y - $elem.radius)
+						.rotate($elem.rotate)
+						.fill($elem.fill);
+					
+					group.add($circle);
+					
+					break;
+				case "rectangle":
+					console.log("I am a square table!");
+					break;
 			}
 		});
 		
-	}
-	
-	function zoom_funks(){
+		group
+			.draggable()
+			.on('dragmove',function(){
+				$('svg g').css('cursor','grabbing');
+			}).on('dragend',function(){
+				$('svg g').css('cursor','grab')
+			});
+		
 		$('.zoom-in').click(function(){
-			console.log("zoom In");
-			$current_zoom_scale = $('.map-container').attr('data-zoom');
-			$new_zoom_size = parseInt($current_zoom_scale) + 1;
-			if ($new_zoom_size > 4) {
-				$new_zoom_size = 4;
-			} else if ($new_zoom_size < 1) {
-				$new_zoom_size = 1;
-			}
-			
-			//$('.map-container').toggleClass('rotate');
-			
-			$('.map-container')
-				.css('transform','scale(' + $new_zoom_size + ')')
-				.attr('data-zoom',$new_zoom_size);
-			
+			$current_scale = group.transform('scaleX');
+			group.transform({scale:$current_scale + 1});
+			console.log(group.transform('scaleX'));
 		});
 		
 		$('.zoom-out').click(function(){
-			console.log("zoom Out");
-			$current_zoom_scale = $('.map-container').attr('data-zoom');
-			$new_zoom_size = parseInt($current_zoom_scale) - 1;
-			
-			if ($new_zoom_size > 4) {
-				$new_zoom_size = 4;
-			} else if ($new_zoom_size < 1) {
-				$new_zoom_size = 1;
+			$current_scale = group.transform('scaleX');			
+			if ($current_scale != 1) {
+				group.transform({scale:$current_scale - 1});
 			}
-			
-			//$('.map-container').toggleClass('rotate');
-			
-			
-			$('.map-container')
-				.css('transform','scale(' + $new_zoom_size + ')')
-				.attr('data-zoom',$new_zoom_size);
-			
-			
 		});
 		
 	}
-	
 	
 })( jQuery );

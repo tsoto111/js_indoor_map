@@ -7,6 +7,8 @@
 		<link rel="stylesheet" href="assets/styles/style.css">
 		<script src="assets/scripts/jquery-3.3.1.min.js"></script>
 		<script src="assets/scripts/jquery-ui.min.js"></script>
+		<script src="assets/scripts/svg.min.js"></script>
+		<script src="assets/scripts/svg.draggable.min.js"></script>
 		<script src="assets/scripts/scripts.js"></script>
 	</head>
 	<body>
@@ -19,6 +21,10 @@
 			</p>
 		</div>
 		<div class="map-view">
+			<div id="map-view-container">
+				
+			</div>
+			<!--
 			<div class="map-container" data-zoom="1">
 				<div class="psudo-cell">
 					<div class="map-elements">
@@ -27,11 +33,14 @@
 				</div>
 				<span class="center-testing-inner" ></span>
 			</div>
+			-->
 			<ul class="scroll-tool">
 				<li class="zoom-in">+</li>
 				<li class="zoom-out">-</li>
 			</ul>
 		</div>
-		<span class="center-testing-outer" ></span>
+		<div class="svg-coords">Coords: </div>
+		
+		<!--<span class="center-testing-outer" ></span>-->
 	</body>
 </html>

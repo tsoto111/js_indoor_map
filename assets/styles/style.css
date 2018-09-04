@@ -3,7 +3,7 @@ html,body { height:100%; }
 body {
 	position:relative;
 }
-
+/*
 .psudo-table {
 	display:table;
 	width:100%;
@@ -13,6 +13,11 @@ body {
 .psudo-table-cell {
 	display:table-cell;
 	vertical-align:middle;
+}
+*/
+
+.table-1 {
+	
 }
 
 .map-menu {
@@ -31,6 +36,35 @@ body {
 	position:relative;
 }
 
+#map-view-container {
+	width:100%;
+	height:100%;
+	position:absolute;
+}
+
+svg {
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+
+svg g {
+	cursor:grab;
+	transition:all 300ms linear;
+}
+
+.svg-coords {
+	position:absolute;
+	background:orange;
+	padding:1rem;
+	display:block;
+	top:10px;
+	right:10px;
+	font-family:arial;
+	visibility:hidden;
+}
+
+/*
 .map-container {
 	display:table;
 	width:100%;
@@ -82,7 +116,7 @@ body {
 .rotate {
 	transform: rotate(360deg);
 }
-
+*/
 .scroll-tool {
 	position:absolute;
 	bottom:20px;
