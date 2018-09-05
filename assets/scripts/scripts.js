@@ -16,6 +16,18 @@
 	====================================================*/
 	function init_map_container() {
 		
+		// Get Viewport Size
+		$viewport_w = $('#map-view-container')[0].getBoundingClientRect().width;
+		$viewport_h = $('#map-view-container')[0].getBoundingClientRect().height;
+		
+		//Viewport Midpoint
+		$midpoint_x = ($viewport_w)/2;
+		$midpoint_y = ($viewport_h)/2;
+		
+		// Zoom Midpoint, Dynamically updated by drag!
+		$zoom_center_x = $midpoint_x;
+		$zoom_center_y = $midpoint_y;
+		
 		$map_elements = [
 			{
 				id:"background",
@@ -25,6 +37,15 @@
 				radius: "10000", 
 				rotate:0, 
 				fill:"white"
+			},
+			{
+				id:"center",
+				type:"circle", 
+				x: $midpoint_x, 
+				y: $midpoint_y, 
+				radius: 5, 
+				rotate:0, 
+				fill:"transparent" // Shape to test zoom midepoint!
 			},
 			{
 				id:"table-1",
@@ -81,7 +102,7 @@
 				fill:"orange"
 			}
 		]
-				
+			
 		var draw = SVG('map-view-container');
 		var group = draw.group();
 		
@@ -111,7 +132,7 @@
 						.fill($elem.fill);
 					
 					group.add($circle);
-					
+					$elem.shape = $circle;
 					break;
 				case "rectangle":
 					console.log("I am a square table!");
@@ -119,27 +140,64 @@
 			}
 		});
 		
+		// Calculate Center Point
+		$(window).resize(function(){
+			$midpoint_x = ($('#map-view-container')[0].getBoundingClientRect().width)/2;
+			$midpoint_y = ($('#map-view-container')[0].getBoundingClientRect().height)/2;
+			$zoom_center_x = $midpoint_x;
+			$zoom_center_y = $midpoint_y;
+			$map_elements[1].shape.x($midpoint_x);
+			$map_elements[1].shape.y($midpoint_y);
+		});
+		
 		group
 			.draggable()
-			.on('dragmove',function(){
+			.on('dragmove',function(e){
+				
+				// Change Cursor on Drag
 				$('svg g').css('cursor','grabbing');
-			}).on('dragend',function(){
+				
+				// Get Group Matrix Transformation
+				var matrix = $('svg g').attr('transform');
+				if (matrix != undefined) {
+					// Parse Group Matrix Transformation Data into an array 
+					matrix = matrix.match(/-?[\d\.]+/g);
+					
+					//Get Current Zoom Scale for Calculation
+					$current_scale = group.transform('scaleX');
+					
+					// Calculate center position with drag transformation!
+					$zoom_center_x = ($midpoint_x - parseInt(matrix[4]))/$current_scale;
+					$zoom_center_y = ($midpoint_y - parseInt(matrix[5]))/$current_scale;
+					
+					// Update Test Center Point
+					$map_elements[1].shape.x($zoom_center_x);
+					$map_elements[1].shape.y($zoom_center_y);
+				}
+			}).on('dragend',function(e){
+				// Change Cursor on Drag End
 				$('svg g').css('cursor','grab')
 			});
 		
+		
 		$('.zoom-in').click(function(){
 			$current_scale = group.transform('scaleX');
-			group.transform({scale:$current_scale + 1});
-			console.log(group.transform('scaleX'));
+			group.transform({
+				scale:$current_scale + 1, 
+				cx: $zoom_center_x,
+				cy: $zoom_center_y,
+			});
 		});
 		
 		$('.zoom-out').click(function(){
 			$current_scale = group.transform('scaleX');			
 			if ($current_scale != 1) {
-				group.transform({scale:$current_scale - 1});
+				group.transform({
+					scale:$current_scale - 1,
+					cx: $zoom_center_x,
+					cy: $zoom_center_y,
+				});
 			}
 		});
-		
 	}
-	
 })( jQuery );

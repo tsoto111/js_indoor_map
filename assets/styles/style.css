@@ -16,10 +16,6 @@ body {
 }
 */
 
-.table-1 {
-	
-}
-
 .map-menu {
 	width:25%;
 	height:100%;
@@ -43,6 +39,7 @@ body {
 }
 
 svg {
+	transform-origin: center;
 	position:absolute;
 	width:100%;
 	height:100%;
@@ -50,7 +47,7 @@ svg {
 
 svg g {
 	cursor:grab;
-	transition:all 300ms linear;
+	transition:transform 300ms linear;
 }
 
 .svg-coords {
