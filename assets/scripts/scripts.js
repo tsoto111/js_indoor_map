@@ -3,8 +3,6 @@
 	$(document).ready(function(){
 		console.log('On Document Ready!');
 		init_map_container();
-		//zoom_funks();
-		
 	});
 	
 	$(window).on('load',function(){
@@ -31,79 +29,158 @@
 		$map_elements = [
 			{
 				id:"background",
-				type:"circle", 
+				type:"rectangle", 
 				x: 0, 
-				y: 0, 
-				radius: "10000", 
-				rotate:0, 
-				fill:"white"
+				y: 0,
+				width:1440,
+				height:955, 
+				rotate:0,
+				stroke: {color:"#000", opacity: 1, width:5},
+				fill:"#52565e"
 			},
 			{
 				id:"center",
 				type:"circle", 
 				x: $midpoint_x, 
 				y: $midpoint_y, 
-				radius: 5, 
+				radius:10, 
 				rotate:0, 
-				fill:"transparent" // Shape to test zoom midepoint!
+				fill:"black" // Shape to test zoom midepoint!
 			},
 			{
 				id:"table-1",
 				type:"circle", 
-				x: 428, 
-				y: 168, 
-				radius: "10", 
-				rotate:0, 
-				fill:"red"
-			},
-			{
-				id:"table-1",
-				type:"circle", 
-				x: 388, 
-				y: 210, 
-				radius: "10", 
-				rotate:0, 
-				fill:"blue"
-			},
-			{
-				id:"table-1",
-				type:"circle", 
-				x: 388, 
-				y: 265, 
-				radius: "10", 
-				rotate:0, 
-				fill:"blue"
-			},
-			{
-				id:"table-1",
-				type:"circle", 
-				x: 388, 
-				y: 335, 
-				radius: "10", 
+				x: 1130, 
+				y: 300, 
+				radius: 25, 
 				rotate:0, 
 				fill:"green"
 			},
 			{
-				id:"table-1",
+				id:"table-2",
 				type:"circle", 
-				x: 388, 
-				y: 389, 
-				radius: "10", 
+				x: 930, 
+				y: 300, 
+				radius: 25, 
 				rotate:0, 
+				fill:"green"
+			},
+			{
+				id:"table-3",
+				type:"circle", 
+				x: 730, 
+				y: 300, 
+				radius: 25, 
+				rotate:0, 
+				fill:"green"
+			},
+			{
+				id:"table-4",
+				type:"circle", 
+				x: 530, 
+				y: 300, 
+				radius: 25, 
+				rotate:0, 
+				fill:"green"
+			},
+			{
+				id:"table-5",
+				type:"circle", 
+				x: 330, 
+				y: 300, 
+				radius: 25, 
+				rotate:0, 
+				fill:"green"
+			},
+			{
+				id:"table-6",
+				type:"circle", 
+				x: 130, 
+				y: 300, 
+				radius: 25, 
+				rotate:0, 
+				fill:"green"
+			},
+			{
+				id:"table-7",
+				type:"rectangle", 
+				x: 1350, 
+				y: 450, 
+				width:100,
+				height:200, 
+				rotate:0,
+				stroke: {color:"#000", opacity: 1, width:5},
 				fill:"yellow"
 			},
 			{
 				id:"table-8",
 				type:"circle", 
-				x: 677, 
-				y: 270, 
-				radius: "20", 
+				x: 1130, 
+				y: 600, 
+				radius: 25, 
 				rotate:0, 
-				fill:"orange"
+				fill:"green"
+			},
+			{
+				id:"table-9",
+				type:"circle", 
+				x: 930, 
+				y: 600, 
+				radius: 25, 
+				rotate:0, 
+				fill:"green"
+			},
+			{
+				id:"table-10",
+				type:"circle", 
+				x: 730, 
+				y: 600, 
+				radius: 25, 
+				rotate:0, 
+				fill:"green"
+			},
+			{
+				id:"table-11",
+				type:"circle", 
+				x: 530, 
+				y: 600, 
+				radius: 25, 
+				rotate:0, 
+				fill:"green"
+			},
+			{
+				id:"table-12",
+				type:"circle", 
+				x: 330, 
+				y: 600, 
+				radius: 25, 
+				rotate:0, 
+				fill:"green"
+			},
+			{
+				id:"table-13",
+				type:"circle", 
+				x: 130, 
+				y: 600, 
+				radius: 25, 
+				rotate:0, 
+				fill:"green"
+			},
+			{
+				id:"table-7",
+				type:"rectangle", 
+				x: 725, 
+				y: 837, 
+				width:200,
+				height:100, 
+				rotate:0,
+				stroke: {color:"#000", opacity: 1, width:5},
+				fill:"pink"
 			}
 		]
 			
 		var draw = SVG('map-view-container');
+		//draw.viewbox(0,0,$viewport_w,$viewport_h);
 		var group = draw.group();
 		
 		//Calulate Position on hover
@@ -135,21 +212,53 @@
 					$elem.shape = $circle;
 					break;
 				case "rectangle":
-					console.log("I am a square table!");
+					$rectangle = draw
+						.rect()
+						.addClass($elem.id)
+						.width($elem.width)
+						.height($elem.height)
+						.rotate($elem.rotate)
+						.fill($elem.fill)
+					
+					if ($elem.id != "background") {
+						$rectangle
+							.move($elem.x - ($elem.width / 2), $elem.y - ($elem.height / 2))
+					} else {
+						$rectangle
+							.stroke($elem.stroke);
+					}
+					
+					group.add($rectangle);
+					$elem.shape = $rectangle;
+					
+					break;
+					
+				case "polygon":
+					
+					console.log("Polygon Found!");
+					
 					break;
 			}
 		});
 		
 		// Calculate Center Point
+		group.center($zoom_center_x,$zoom_center_y);
 		$(window).resize(function(){
-			$midpoint_x = ($('#map-view-container')[0].getBoundingClientRect().width)/2;
-			$midpoint_y = ($('#map-view-container')[0].getBoundingClientRect().height)/2;
+			$current_scale = group.transform('scaleX');
+			$viewport_w = $('#map-view-container')[0].getBoundingClientRect().width;
+			$viewport_h = $('#map-view-container')[0].getBoundingClientRect().height;
+			$midpoint_x = $viewport_w/2;
+			$midpoint_y = $viewport_h/2;
 			$zoom_center_x = $midpoint_x;
 			$zoom_center_y = $midpoint_y;
 			$map_elements[1].shape.x($midpoint_x);
 			$map_elements[1].shape.y($midpoint_y);
+			//group.center($zoom_center_x,$zoom_center_y);
+			//draw.viewbox(0,0,$viewport_w,$viewport_h);
+
 		});
 		
+		// Allow Group to be Dragged!
 		group
 			.draggable()
 			.on('dragmove',function(e){
@@ -178,26 +287,26 @@
 				// Change Cursor on Drag End
 				$('svg g').css('cursor','grab')
 			});
-		
-		
+			
 		$('.zoom-in').click(function(){
+			console.log(group.bbox());
 			$current_scale = group.transform('scaleX');
-			group.transform({
-				scale:$current_scale + 1, 
+			group.animate(200).transform({
+				scale:$current_scale + 0.2, 
 				cx: $zoom_center_x,
 				cy: $zoom_center_y,
 			});
 		});
 		
 		$('.zoom-out').click(function(){
-			$current_scale = group.transform('scaleX');			
-			if ($current_scale != 1) {
-				group.transform({
-					scale:$current_scale - 1,
-					cx: $zoom_center_x,
-					cy: $zoom_center_y,
-				});
-			}
+			//console.log(group.bbox());
+			$current_scale = group.transform('scaleX');
+			group.animate(200).transform({
+				scale:$current_scale - 0.2,
+				cx: $zoom_center_x,
+				cy: $zoom_center_y,
+			});
 		});
+		
 	}
 })( jQuery );

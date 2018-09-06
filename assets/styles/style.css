@@ -3,18 +3,6 @@ html,body { height:100%; }
 body {
 	position:relative;
 }
-/*
-.psudo-table {
-	display:table;
-	width:100%;
-	height:100%;
-}
-
-.psudo-table-cell {
-	display:table-cell;
-	vertical-align:middle;
-}
-*/
 
 .map-menu {
 	width:25%;
@@ -41,13 +29,14 @@ body {
 svg {
 	transform-origin: center;
 	position:absolute;
+	/*
 	width:100%;
 	height:100%;
+	*/
 }
 
 svg g {
 	cursor:grab;
-	transition:transform 300ms linear;
 }
 
 .svg-coords {
@@ -61,59 +50,6 @@ svg g {
 	visibility:hidden;
 }
 
-/*
-.map-container {
-	display:table;
-	width:100%;
-	height:100%;
-	transition: transform 0.5s linear;
-	transform-origin: top left;
-	transform-style: preserve-3D;
-	transform-origin:center;
-}
-
-.center-testing-outer {
-	display:block;
-	width:10px;
-	height:10px;
-	position:absolute;
-	top:0px;
-	left:0px;
-	background:red;
-	border-radius:100%;
-}
-
-.center-testing-inner {
-	display:block;
-	width:10px;
-	height:10px;
-	position:absolute;
-	top:0px;
-	left:0px;
-	background:green;
-	border-radius:100%;
-}
-
-.psudo-cell {
-	display:table-cell;
-	width:100%;
-	height:100%;
-	vertical-align:middle;
-}
-
-.map-ratio {
-	width:100%;
-	height:auto;
-}
-
-.map-elements {
-	background:blue;
-}
-
-.rotate {
-	transform: rotate(360deg);
-}
-*/
 .scroll-tool {
 	position:absolute;
 	bottom:20px;
