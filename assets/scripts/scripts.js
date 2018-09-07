@@ -1,5 +1,20 @@
 (function($) {
 	
+	/* Goal Data Structure
+		{
+			"background" => {id: "", .....}
+			"tables" => [
+				{
+					id: "",
+					type: "",
+				},
+				{
+					id: "",
+				}
+			]
+		}
+	*/
+	
 	$map_elements = [
 		{
 			id:"background",
@@ -144,16 +159,6 @@
 		},
 		{
 			id:"table-15",
-			type:"rectangle", 
-			x: 730, 
-			y: 462, 
-			width:25,
-			height:25, 
-			rotate:0, 
-			fill:"blue"
-		},
-		{
-			id:"table-16",
 			type:"polygon",
 			x:230,
 			y:443,
@@ -176,21 +181,14 @@
 	====================================================*/
 	function init_map_container() {
 		
-		// Get Viewport Size
-		$viewport_w = $('#map-view-container')[0].getBoundingClientRect().width;
-		$viewport_h = $('#map-view-container')[0].getBoundingClientRect().height;
-		
-		//Viewport Midpoint
-		$midpoint_x = ($viewport_w)/2;
-		$midpoint_y = ($viewport_h)/2;
-		
 		/* ======================================== */
 		/* Draw Funks                               */
 		/* ======================================== */
 		var draw = SVG('map-view-container');
 		$group_dragg = draw.group().addClass('group_dragg');
 		$group_zoom = draw.group().addClass('group_zoom').add($group_dragg);
-					
+		
+		/*		
 		//Calulate Position on hover
 		draw.mousemove(function($evt) {		
 			$('.svg-coords')
@@ -203,6 +201,7 @@
 		},function(evt){
 			$('.svg-coords').css('visibility','hidden');
 		});
+		*/
 		
 		//Draw Tables
 		$.each($map_elements,function($index,$elem){
@@ -231,9 +230,6 @@
 					if ($elem.id != "background") {
 						$rectangle
 							.move($elem.x - ($elem.width / 2), $elem.y - ($elem.height / 2))
-					} else {
-						$rectangle
-							.stroke($elem.stroke);
 					}
 					
 					$group_dragg.add($rectangle);
@@ -242,7 +238,6 @@
 					break;
 					
 				case "polygon":
-					console.log("Polygon Found!");
 					$polygon = draw
 						.polygon($elem.path)
 						.addClass($elem.id)
@@ -263,16 +258,6 @@
 		/* Zoom Funks                               */
 		/* ======================================== */	
 		$zoom_center = shape_center($group_zoom);
-		/*		
-		$center_circle = draw
-			.circle()
-			.addClass('center')
-			.radius(10)
-			.move($zoom_center.cx,$zoom_center.cy)
-			.fill('black');
-			
-		$group_dragg.add($center_circle);
-		*/
 		$('.zoom-in').click(function(){				
 			$current_scale = $group_zoom.transform('scaleX');
 			$group_zoom.animate(200).transform({
@@ -299,9 +284,6 @@
 		$group_dragg.draggable()
 			.on('dragmove',function(e){
 				$('svg g').css('cursor','grabbing');
-				
-				//console.log($center_circle.bbox().x + " " + $center_circle.bbox().y );
-				console.log($zoom_center);
 			}).on('dragend',function(e){
 				$('svg g').css('cursor','grab');
 			});
