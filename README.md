@@ -41,7 +41,7 @@ Note: Don't forget to set this container's position to **relative** if not posit
 
 3 ) Store your table drawing data in the following data structure via your own javascript file and initialize the map. Can be seen in `/assets/scripts/scripts.js`
 
-```jquery
+```javascript
 
 $map_elements = {
 	"background": {
