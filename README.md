@@ -93,6 +93,7 @@ The "background" key of the `$map_elements` data structure contains and sets the
 The "tables" key is an array of objects that contain shape data by 3 different types: "circle", "rectangle", and "polygon"
 
 #### Circle Table Type
+
 | Key    | Type   | Description                                          | 
 | ------ | ------ | ---------------------------------------------------- |
 | id     | Int    | ID of the post                                       |
@@ -103,6 +104,7 @@ The "tables" key is an array of objects that contain shape data by 3 different t
 | fill   | Hex    | Sets the color of the background                     |
 
 #### Rectangle Table Type
+
 | Key    | Type   | Description                                             | 
 | ------ | ------ | ------------------------------------------------------- |
 | id     | Int    | ID of the post                                          |
@@ -111,3 +113,16 @@ The "tables" key is an array of objects that contain shape data by 3 different t
 | y      | Int    | Y coordinate of the drawn shape                         |
 | radius | Int    | Controls the size of the square or rectangle            |
 | fill   | Hex    | Sets the color of the shape.                            |
+
+#### Polygon Table Type
+
+| Key    | Type   | Description                                             | 
+| ------ | ------ | ------------------------------------------------------- |
+| id     | Int    | ID of the post                                          |
+| type   | String | Defines the shape being drawn, in this case "polygon"   |
+| x      | Int    | X coordinate of the drawn shape                         |
+| y      | Int    | Y coordinate of the drawn shape                         |
+| path   | Int    | draws the shape with polygon path data.                 |
+| fill   | Hex    | Sets the color of the shape.                            |
+
+Note: when getting path data, the shape needs to be exported with no whitespace around the graphic in illustrator.
