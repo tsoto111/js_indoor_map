@@ -73,3 +73,19 @@ $(document).ready(function(){
 
 ``` 
 
+## Parameters
+
+### Background
+
+The "background" key of the `$map_elements` data structure contains and sets the diminsion of the full map.
+
+| Key    | Type   | Description                                                             | 
+| ------ | ------ | ----------------------------------------------------------------------- |
+| id     | Int    | ID of the post                                                          |
+| type   | String | Should always be set to rectangle! Defines the shape of the background  |
+| x      | Int    | X coordinate of the drawn shape, always zero for background             |
+| y      | Int    | Y coordinate of the drawn shape, always zero for background             |
+| width  | Int    | Required to set diminsion of the map                                    |
+| height | Int    | Required to set diminsion of the map                                    |
+| fill   | Hex    | Sets the color of the background                                        |
+
