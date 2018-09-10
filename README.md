@@ -11,7 +11,7 @@ Note: All of these dependencies are in `assets/scripts` directory.
 
 ## Installation
 
-1 ) Load in dependencies in the following order
+1 ) Load dependencies in the following order via your document header
 
 ```html
 <!-- SVG Map Drawer Depencies -->
@@ -22,3 +22,20 @@ Note: All of these dependencies are in `assets/scripts` directory.
 <!-- Your js file -->
 <script src="assets/scripts/scripts.js"></script>
 ```
+
+2 ) Create a wrapper for the map, in this example i used the following:
+
+```html
+<div id="map-view-container"></div>
+```
+
+Note: Don't forget to set this container's position to **relative** if not positioned **absolute** in css. In my example, I use the following:
+
+```css
+.map-view-container {
+	width:100%;
+	height:100%;
+	position:absolute;
+}
+```
+
