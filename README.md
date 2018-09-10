@@ -18,11 +18,11 @@ Note: All of these dependencies are in `assets/scripts` directory.
 * [Background](#background)
 * [Tables](#tables)
 
-⋅⋅* [Circle](#circle-table-type)
+  * [Circle](#circle-table-type)
 
-⋅⋅* [Rectangle](#rectangle-table-type)
+  * [Rectangle](#rectangle-table-type)
 
-⋅⋅* [Polygon](#polygon-table-type)
+  * [Polygon](#polygon-table-type)
 
 ## Installation
 
