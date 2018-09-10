@@ -2,12 +2,14 @@
 	$.fn.svgMapDrawer = function($map_elements) {
 		$wrapper = $(this);
 		
-		//Get Map BG Data (sets dimension of map)
-		$background_data = $map_elements.background;
+		$map_data = $map_elements.map_data;
 		
+		//Get Map BG Data (sets dimension of map)
+		$background_data = $map_elements.map_data.background;
+				
 		//Prepair Wrappers
 		$draw = SVG($wrapper.attr('id'))
-			.viewbox(0,0,$background_data.width,$background_data.height);
+			.viewbox(0,0,$background_data.shape.width,$background_data.shape.height);
 			
 		// Draw Drag Group
 		$group_drag = $draw
@@ -27,13 +29,13 @@
 		$.each($map_elements.posts,function($index,$post){
 			switch($post.shape.type) {
 				case "circle":
-					draw_circle($post.shape);
+					draw_circle($post);
 					break;
 				case "rectangle":
-					draw_rectangle($post.shape);
+					draw_rectangle($post);
 					break;
 				case "polygon":
-					draw_polygon($post.shape);
+					draw_polygon($post);
 					break;
 				default:
 					console.log("Missing Shape Type: " + $post.shape.type);
@@ -110,38 +112,52 @@
 			Helper Functions
 		=================================================*/
 		function draw_rectangle($shape_data){
+			
+			$table_state = $shape_data.state;
+			
 			$rectangle = $draw
 				.rect()
-				.addClass($shape_data.id)
-				.width($shape_data.width)
-				.height($shape_data.height)
-				.fill($shape_data.fill);
+				.addClass($shape_data.name + " shape-" + $shape_data.id)
+				.width($shape_data.shape.width)
+				.height($shape_data.shape.height);
 				
-				if ($shape_data.id != "background") {
-					$rectangle.move($shape_data.x - ($shape_data.width / 2), $shape_data.y - ($shape_data.height / 2))
+				if ($shape_data.id != 0) {
+					$rectangle
+						.move($shape_data.shape.x - ($shape_data.shape.width / 2), $shape_data.shape.y - ($shape_data.shape.height / 2))
+						.fill($map_data.states[$table_state].fill)
+						.addClass('table');
+				} else {
+					$rectangle
+						.fill($background_data.shape.fill);
 				}
 				
 			$group_drag.add($rectangle);			
 		}
 		
 		function draw_circle($shape_data){
+			
+			$table_state = $shape_data.state;
+			
 			$circle = $draw
 				.circle()
-				.addClass($shape_data.id)
-				.radius($shape_data.radius)
-				.move($shape_data.x - $shape_data.radius, $shape_data.y - $shape_data.radius)
-				.fill($shape_data.fill);
+				.addClass($shape_data.name + " shape-" + $shape_data.id + " table")
+				.radius($shape_data.shape.radius)
+				.move($shape_data.shape.x - $shape_data.shape.radius, $shape_data.shape.y - $shape_data.shape.radius)
+				.fill($map_data.states[$table_state].fill);
 				
 			$group_drag.add($circle);
 		}
 		
 		function draw_polygon($shape_data){
-			$polygon = $draw
-				.polygon($shape_data.path)
-				.addClass($shape_data.id)
-				.fill($shape_data.fill);
 			
-			$polygon.move($shape_data.x - ($polygon.bbox().width / 2), $shape_data.y - ($polygon.bbox().height / 2));
+			$table_state = $shape_data.state;
+			
+			$polygon = $draw
+				.polygon($shape_data.shape.path)
+				.addClass($shape_data.name + " shape-" + $shape_data.id + " table")
+				.fill($map_data.states[$table_state].fill);
+			
+			$polygon.move($shape_data.shape.x - ($polygon.bbox().width / 2), $shape_data.shape.y - ($polygon.bbox().height / 2));
 			
 			$group_drag.add($polygon);
 		}
