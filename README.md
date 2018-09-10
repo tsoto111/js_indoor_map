@@ -13,7 +13,7 @@ Note: All of these dependencies are in `assets/scripts` directory.
 
 1 ) Load in dependencies in the following order
 
-```
+```html
 <!-- SVG Map Drawer Depencies -->
 <script src="assets/scripts/jquery-3.3.1.min.js"></script>
 <script src="assets/scripts/svg.min.js"></script>
