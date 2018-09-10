@@ -23,7 +23,7 @@ Note: All of these dependencies are in `assets/scripts` directory.
 <script src="assets/scripts/scripts.js"></script>
 ```
 
-2 ) Create a wrapper for the map, in this example i used the following:
+2 ) Create a wrapper for the map, in this example I used the following:
 
 ```html
 <div id="map-view-container"></div>
@@ -38,4 +38,38 @@ Note: Don't forget to set this container's position to **relative** if not posit
 	position:absolute;
 }
 ```
+
+3 ) Store your table drawing data in the following data structure via your own javascript file and initialize the map. Can be seen in `/assets/scripts/scripts.js`
+
+```jquery
+
+$map_elements = {
+	"background": {
+		id:"background",
+		type:"rectangle", 
+		x: 0, 
+		y: 0,
+		width:1440,
+		height:955, 
+		fill:"white"
+	},
+	"tables": [
+		{
+			id:"table-1",
+			type:"circle", 
+			x: 1130, 
+			y: 300, 
+			radius: 25, 
+			rotate:0, 
+			fill:"green"
+		},
+		...
+	]
+}
+
+$(document).ready(function(){		
+	$('#map-view-container').svgMapDrawer($map_elements);
+});
+
+``` 
 
