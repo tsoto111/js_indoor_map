@@ -7,7 +7,7 @@ This is an example of SVG Map Drawer jQuery plugin living in `/assets/scripts/sv
 * [SVG JS](http://svgjs.com/): Version 2.6.6
 * [SVG Draggable JS](https://github.com/svgdotjs/svg.draggable.js): Version 2.2.1
 
-Note: All of these dependencies are in `assets/scripts` directory.
+**Note:** All of these dependencies are in `assets/scripts` directory.
 
 ## Table of Contents
 
