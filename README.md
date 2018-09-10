@@ -4,9 +4,7 @@ This is an example of SVG Map Drawer jQuery plugin living in `/assets/scripts/sv
 
 <a href="https://htmlpreview.github.io/?https://github.com/tsoto111/js_indoor_map/blob/master/index.html" target="_blank">
 	<img src="https://github.com/tsoto111/js_indoor_map/blob/master/assets/images/preview-btn.png" />
-</a>
-
-*separate paragraph*
+</a><br/><br/>
 
 **Dependencies**
 * [jQuery](http://jquery.com/): Version 3.3.1
