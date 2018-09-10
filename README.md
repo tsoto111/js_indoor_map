@@ -29,7 +29,7 @@ Note: All of these dependencies are in `assets/scripts` directory.
 <div id="map-view-container"></div>
 ```
 
-Note: Don't forget to set this container's position to **relative** if not positioned **absolute** in css. In my example, I use the following:
+**Note:** Don't forget to set this container's position to **relative** if not positioned **absolute** in css. In my example, I use the following:
 
 ```css
 .map-view-container {
@@ -125,4 +125,4 @@ The "tables" key is an array of objects that contain shape data by 3 different t
 | path   | Int    | draws the shape with polygon path data.                 |
 | fill   | Hex    | Sets the color of the shape.                            |
 
-Note: when getting path data, the shape needs to be exported with no whitespace around the graphic in illustrator.
+**Note:** when getting path data, the shape needs to be exported with no whitespace around the graphic in illustrator.
