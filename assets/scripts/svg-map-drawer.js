@@ -24,19 +24,19 @@
 		$background_shape = draw_rectangle($background_data);
 		
 		//Draw Each Table
-		$.each($map_elements.tables,function($index,$table){
-			switch($table.type) {
+		$.each($map_elements.posts,function($index,$post){
+			switch($post.shape.type) {
 				case "circle":
-					draw_circle($table);
+					draw_circle($post.shape);
 					break;
 				case "rectangle":
-					draw_rectangle($table);
+					draw_rectangle($post.shape);
 					break;
 				case "polygon":
-					draw_polygon($table);
+					draw_polygon($post.shape);
 					break;
 				default:
-					console.log("Missing Shape Type: " + $table.type);
+					console.log("Missing Shape Type: " + $post.shape.type);
 					break;
 			}
 		});
