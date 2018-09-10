@@ -9,6 +9,18 @@ This is an example of SVG Map Drawer jQuery plugin living in `/assets/scripts/sv
 
 Note: All of these dependencies are in `assets/scripts` directory.
 
+## Table of Contents
+
+[Installation](#installation)
+
+[Parameters](#parameters)
+
+* [Background](#background)
+* [Tables](#tables)
+⋅⋅* [Circle](#circle-table-type)
+⋅⋅* [Rectangle](#rectangle-table-type)
+⋅⋅* [Polygon](#polygon-table-type)
+
 ## Installation
 
 1 ) Load dependencies in the following order via your document header
