@@ -2,7 +2,9 @@
 
 This is an example of SVG Map Drawer jQuery plugin living in `/assets/scripts/svg-map-drawer.js` which is leveraging the SVG JS library. SVG Map Drawer JS can be used to draw and view an svg indoor map of a restaurant or an event's table setting.
 
-[<img src="https://github.com/tsoto111/js_indoor_map/blob/master/assets/images/preview-btn.png" target="_blank" />](https://htmlpreview.github.io/?https://github.com/tsoto111/js_indoor_map/blob/master/index.html)
+<a href="https://htmlpreview.github.io/?https://github.com/tsoto111/js_indoor_map/blob/master/index.html" target="_blank">
+	<img src="https://github.com/tsoto111/js_indoor_map/blob/master/assets/images/preview-btn.png" />
+</a>
 
 **Dependencies**
 * [jQuery](http://jquery.com/): Version 3.3.1
