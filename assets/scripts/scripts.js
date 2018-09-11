@@ -229,9 +229,10 @@
 		});
 		
 		// On Table Click
-		$("svg rect, svg circle, svg polygon").click(function(){
+		$(".table").click(function(){
 			if (!$(this).hasClass('background')){
 				$(this).siblings().removeClass('active');
+				open_detail_view();
 				$(this).addClass('active');
 			}
 		});
@@ -239,30 +240,27 @@
 		// On Label Click, Activate Table
 		$("svg text").click(function(){
 			$target = ".shape-" + $(this).attr('data-id');
-			$(this).siblings().removeClass('active');
-			$($target).addClass('active');
-			console.log();
+			$($target).trigger('click');
 		});
 		
 		// On Table Cell Click
 		$(".posts li").click(function(){
-			//Select Table on map
 			$target = ".shape-" + $(this).attr('data-id');
 			$($target).trigger('click');
-			
-			// Open Detail View
-			$('.detail-view').css({borderRight:"1px solid #ccc"}).animate({right:"0px"},500,function(){
-				$(this).css({borderRight:'0px'});
-			});
-			
 		});
 		
 		// Back Btn Click
 		$(".detail-view .back-btn").click(function(){
-			$("#map-view-container").find(".table").removeClass('active');
-			$('.detail-view').css({borderRight:'1px solid #ccc'}).animate({right:'100%'},500,function(){
-				$(this).css({borderRight:'0px'});
-			});
+			$("#map-view-container")
+				.find(".table")
+				.removeClass('active');
+				
+			$('.detail-view')
+				.removeClass('open')
+				.css({borderRight:'1px solid #ccc'})
+				.animate({right:'100%'},500,function(){
+					$(this).css({borderRight:'0px'});
+				});
 		});
 		
 	});
@@ -270,5 +268,30 @@
 	$(window).on('load',function(){
 		console.log('On Window Load!');
 	});
+	
+	function open_detail_view(){
+		if (!$('.detail-view').hasClass('open')){
+			$('.detail-view')
+				.addClass('open')
+				.css({borderRight:"1px solid #ccc"})
+				.animate({right:"0px"},500,function(){
+					$(this).css({borderRight:'0px'});
+				});
+		} else {
+			// Close, Reset Data, and Re-open with new data!
+			$('.detail-view')
+				.css({borderRight:"1px solid #ccc"})
+				.animate({right:"100%"},500,function(){
+					// Clear data
+					console.log("Clear Data");
+				
+					//Re-open with new data
+					$(this).animate({right:"0px"},500,function(){
+						$(this).css({borderRight:'0px'});
+					});
+			});
+		}
+	}
+	
 	
 })( jQuery );
