@@ -2,17 +2,14 @@
 html,body { height:100%; }
 body {
 	position:relative;
+	font-family:arial;
 }
 
-.map-menu {
-	width:25%;
-	height:100%;
-	float:left;
-	border-right:5px solid black;
-}
-
+/* ==============================================
+	SVG Map
+===============================================*/
 .map-view {
-	width:75%;
+	width:80%;
 	height:100%;
 	background:#52565e;
 	float:right;
@@ -32,23 +29,63 @@ body {
 	transition:all 300ms ease-in-out;
 } 
 
-#map-view-container .table {
+#map-view-container .table, #map-view-container .label {
 	cursor:pointer;
 }
+/* ==============================================
+	Map Menu
+===============================================*/
+.map-menu {
+	position:relative;
+	overflow:scroll;
+	width:20%;
+	height:100%;
+	float:left;
+	border-right:1px solid #ccc;
+}
 
-.map-menu ul.posts {
-	font-family:arial;
+.map-menu .info-bar {
+	overflow:hidden;
+	padding:20px;
+	border-bottom:1px solid #ccc;
+}
+
+.info-bar-item {
+	width:50%;
+	float:left;
+}
+
+.info-bar .count {
+	text-align:right;
 }
 
 .map-menu .posts li {
 	padding:20px;
 	border-bottom:1px solid #ccc;
 	cursor:pointer;
+	background:url('../images/table-arrow-icon.png') center right 20px no-repeat;
+	background-size:auto 30%;
 }
 
 .active {
 	fill:#5fc883;
 }
+/* ==============================================
+	Detail View
+===============================================*/
+.detail-view {
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0px;
+	right:100%;
+	background:white;
+}
 
-
-
+.back-btn {
+	cursor:pointer;
+	color:#007AFF;
+	padding-left:20px;
+	background:url("../images/back-arrow.png") center left 0px no-repeat;
+	background-size:auto 90%;
+}

@@ -219,22 +219,52 @@
 		//Initialize SVG Map	
 		$('#map-view-container')
 			.svgMapDrawer($map_elements);
-			
+		
+		//Get feed count
+		$('.info-bar .count').text("Count " + $map_elements.posts.length);
+		
 		//Build sidebar feed
 		$.each($map_elements.posts,function($index,$post){
-			console.log($post.name);
-			$('.map-menu .posts').append("<li>" + $post.name + "</li>");
+			$('.map-menu .posts').append("<li class='post-" + $post.id + "' data-id='" + $post.id + "' >" + $post.name + "</li>");
 		});
 		
-		//Table on click!
+		// On Table Click
 		$("svg rect, svg circle, svg polygon").click(function(){
-			if ($(this).hasClass('background')){
-				$(this).siblings().removeClass('active');
-			} else {
+			if (!$(this).hasClass('background')){
 				$(this).siblings().removeClass('active');
 				$(this).addClass('active');
 			}
 		});
+		
+		// On Label Click, Activate Table
+		$("svg text").click(function(){
+			$target = ".shape-" + $(this).attr('data-id');
+			$(this).siblings().removeClass('active');
+			$($target).addClass('active');
+			console.log();
+		});
+		
+		// On Table Cell Click
+		$(".posts li").click(function(){
+			//Select Table on map
+			$target = ".shape-" + $(this).attr('data-id');
+			$($target).trigger('click');
+			
+			// Open Detail View
+			$('.detail-view').css({borderRight:"1px solid #ccc"}).animate({right:"0px"},500,function(){
+				$(this).css({borderRight:'0px'});
+			});
+			
+		});
+		
+		// Back Btn Click
+		$(".detail-view .back-btn").click(function(){
+			$("#map-view-container").find(".table").removeClass('active');
+			$('.detail-view').css({borderRight:'1px solid #ccc'}).animate({right:'100%'},500,function(){
+				$(this).css({borderRight:'0px'});
+			});
+		});
+		
 	});
 	
 	$(window).on('load',function(){
