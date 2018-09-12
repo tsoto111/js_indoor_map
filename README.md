@@ -196,3 +196,7 @@ Since this plugin can only draw shapes based off of svg parameters you pass to i
 2 ) Draw your map. Just be sure to create a rectangle at the bottom of the layer in order to get a shape which will give you the document's dimensions. Name your layers so it is easier to see which shapes are what when you export to svg.
 
 ![Document Layer](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/document-layers.png)
+
+3 ) Export your map to an SVG via `File > Export As > SVG`. In your SVG Options Window, be sure to set the **Styling** field to **Presentation Attributes**. Also, be sure to check **Responsive** at the bottom of the popup.
+
+![SVG Options](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/svg-options.png)
