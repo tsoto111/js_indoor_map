@@ -3,7 +3,7 @@
 This is an example of SVG Map Drawer jQuery plugin living in `/assets/scripts/svg-map-drawer.js` which is leveraging the SVG JS library. SVG Map Drawer JS can be used to draw and view an svg indoor map of a restaurant or an event's table setting.
 
 <a href="https://htmlpreview.github.io/?https://github.com/tsoto111/js_indoor_map/blob/master/index.html" target="_blank">
-	<img src="https://github.com/tsoto111/js_indoor_map/blob/master/assets/images/preview-btn.png" />
+	<img src="https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/preview-btn.png" />
 </a><br/><br/>
 
 **Dependencies**
@@ -13,19 +13,22 @@ This is an example of SVG Map Drawer jQuery plugin living in `/assets/scripts/sv
 
 **Note:** All of these dependencies are in `assets/scripts` directory.
 
-## Table of Contents
+## TABLE OF CONTENTS
 
 [Installation](#installation)
 
 [Parameters](#parameters)
 
-* [Background](#background)
-* [Tables](#tables)
-  * [Circle Table Type](#circle-table-type)
-  * [Rectangle Table Type](#rectangle-table-type)
-  * [Polygon Table Type](#polygon-table-type)
+* [Map Data](#map-data)
+  * [Background](#background)
+  * [States](#states)
+* [Posts](#posts-aka-tables)
+* [Shapes](#shapes)
+  * [Circle](#circle)
+  * [Rectangle](#rectangle)
+  * [Polygon](#polygon)
 
-## Installation
+## INSTALLATION
 
 1 ) Load dependencies in the following order via your document header
 
@@ -112,58 +115,69 @@ $(document).ready(function(){
 
 ``` 
 
-## Parameters
+## PARAMETERS
 
-### Background
+### Map Data
 
-The "background" key of the `$map_elements` data structure contains and sets the diminsion of the full map.
+#### background
 
-| Key    | Type   | Description                                                             | 
-| ------ | ------ | ----------------------------------------------------------------------- |
-| id     | Int    | ID of the post                                                          |
-| type   | String | Should always be set to rectangle! Defines the shape of the background  |
-| x      | Int    | X coordinate of the drawn shape, always zero for background             |
-| y      | Int    | Y coordinate of the drawn shape, always zero for background             |
-| width  | Int    | Required to set diminsion of the map                                    |
-| height | Int    | Required to set diminsion of the map                                    |
-| fill   | Hex    | Sets the color of the background                                        |
+The "background" key of the `map_data` object contains and sets the diminsion of the full map.
 
-### Tables
+| Key    | Type      | Description                       | 
+| ------ | --------- | --------------------------------- |
+| id     | Int       | ID of the post                    |
+| name   | String    | Name of the layer in the svg      |
+| shape  | Object    | [Draw shape by type](#shapes)      |
 
-The "tables" key is an array of objects that contain shape data by 3 different types: "circle", "rectangle", and "polygon"
+#### states
 
-#### Circle Table Type
+The "states" key of the `map_data` object controls the fill color for the different states of our posts/tables.
+
+| Key                 | Type      | Description                                   | 
+| ------------------- | --------- | --------------------------------------------- |
+| Variable State Type | Object    | Contains a key value pair of fill:'hex color' |
+
+### Posts (A.K.A. Tables)
+
+The "posts" key is an array of objects which contains all of our data related to a table.
+
+| Key   | Type   | Description                                                | 
+| ----- | ------ | ---------------------------------------------------------- |
+| id    | int    | Post id of the table                                       |
+| name  | string | Name of the table drawn on top of the table within the svg |
+| state | string | State of the table which controls the table fill color     |
+| shape | object | [Draw shape by type](#shapes)                               |
+
+### Shapes
+
+The "shape" key contains parameters to draw svg tables by 3 different types: "circle", "rectangle", and "polygon".
+
+#### circle
 
 | Key    | Type   | Description                                          | 
 | ------ | ------ | ---------------------------------------------------- |
-| id     | Int    | ID of the post                                       |
 | type   | String | Defines the shape being drawn, in this case "circle" |
 | x      | Int    | X coordinate of the drawn shape                      |
 | y      | Int    | Y coordinate of the drawn shape                      |
 | radius | Int    | Controls the size of the circle                      |
-| fill   | Hex    | Sets the color of the background                     |
 
-#### Rectangle Table Type
+#### rectangle
 
 | Key    | Type   | Description                                             | 
 | ------ | ------ | ------------------------------------------------------- |
-| id     | Int    | ID of the post                                          |
 | type   | String | Defines the shape being drawn, in this case "rectangle" |
 | x      | Int    | X coordinate of the drawn shape                         |
 | y      | Int    | Y coordinate of the drawn shape                         |
 | width  | Int    | Controls the width of the square or rectangle           |
 | height | Int    | Controls the height of the square or rectangle          |
-| fill   | Hex    | Sets the color of the shape.                            |
 
-#### Polygon Table Type
+#### polygon
 
 | Key    | Type   | Description                                             | 
 | ------ | ------ | ------------------------------------------------------- |
-| id     | Int    | ID of the post                                          |
 | type   | String | Defines the shape being drawn, in this case "polygon"   |
 | x      | Int    | X coordinate of the drawn shape                         |
 | y      | Int    | Y coordinate of the drawn shape                         |
 | path   | Int    | draws the shape with polygon path data.                 |
-| fill   | Hex    | Sets the color of the shape.                            |
 
 **Note:** when getting path data, the shape needs to be exported with no whitespace around the graphic in illustrator.
