@@ -243,7 +243,7 @@
 			$($target).trigger('click');
 		});
 		
-		// On Table Cell Click
+		// On Table Cell Click, Activate Table
 		$(".posts li").click(function(){
 			$target = ".shape-" + $(this).attr('data-id');
 			$($target).trigger('click');
@@ -292,6 +292,4 @@
 			});
 		}
 	}
-	
-	
 })( jQuery );

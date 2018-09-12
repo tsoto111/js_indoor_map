@@ -60,23 +60,47 @@ This is an example of SVG Map Drawer jQuery plugin living in `/assets/scripts/sv
 ```javascript
 
 $map_elements = {
-	"background": {
-		id:"background",
-		type:"rectangle", 
-		x: 0, 
-		y: 0,
-		width:1440,
-		height:955, 
-		fill:"white"
+	"map_data": {
+		"background": {
+			id:0,
+			name: "background",
+			shape: {
+				type:"rectangle", 
+				x: 0, 
+				y: 0,
+				width:1440,
+				height:955, 
+				fill:"white"
+			}
+		},
+		states: {
+			default: {
+				fill:"#ae85d4"
+			},
+			reserved: {
+				fill:"#e65aaf"
+			},
+			hold: {
+				fill:"#facc00"
+			},
+			selected: {
+				fill:"5fc883"
+			},
+			...
+		}
 	},
-	"tables": [
+	"posts": [
 		{
-			id:"table-1",
-			type:"circle", 
-			x: 1130, 
-			y: 300, 
-			radius: 25, 
-			fill:"green"
+			id:1,
+			name:"A1",
+			state:"reserved",
+			shape: {
+				type:"circle",
+				x: 1130, 
+				y: 300, 
+				radius: 25, 
+				rotate:0, 
+			}
 		},
 		...
 	]
