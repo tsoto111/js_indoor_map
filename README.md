@@ -200,3 +200,7 @@ Since this plugin can only draw shapes based off of svg parameters you pass to i
 3 ) Export your map to an SVG via `File > Export As > SVG`. In your SVG Options Window, be sure to set the **Styling** field to **Presentation Attributes**. Also, be sure to check **Responsive** at the bottom of the popup.
 
 ![SVG Options](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/svg-options.png)
+
+4 ) Now open the svg file in your favorite text editor. From here, we can start extracting our coordinates. 
+
+![SVG Open File](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/svg-open-file.png)
