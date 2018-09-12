@@ -3,7 +3,7 @@
 This is an example of SVG Map Drawer jQuery plugin living in `/assets/scripts/svg-map-drawer.js` which is leveraging the SVG JS library. SVG Map Drawer JS can be used to draw and view an svg indoor map of a restaurant or an event's table setting.
 
 <a href="https://htmlpreview.github.io/?https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/index.html" target="_blank">
-	<img src="https://github.com/tsoto111/js_indoor_map/blob/master/assets/images/preview-btn.png" />
+	<img src="https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/preview-btn.png" />
 </a><br/><br/>
 
 **Dependencies**
@@ -189,3 +189,6 @@ The "shape" key contains parameters to draw svg tables by 3 different types: "ci
 Since this plugin can only draw shapes based off of svg parameters you pass to it, we need to use illustrator to draw our svg map template in order to figure out those parameters. The reason we had to build it this way is because IOS can not interact with a map rendered from a full svg. It needs to draw each shape by itself in order to be able to manipulate it later. For example, tap events and color changes on tables.
 
 
+1 ) Open Illustrator and set your document to the custom size of your svg map in pixels. For my example, I have set my width to 1440px and height to 955px.
+
+![Document Size](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/document-size.png)
