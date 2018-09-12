@@ -28,6 +28,8 @@ This is an example of SVG Map Drawer jQuery plugin living in `/assets/scripts/sv
   * [Rectangle](#rectangle)
   * [Polygon](#polygon)
 
+[Illustrator Workflow](#illustrator-workflow)
+
 ## INSTALLATION
 
 1 ) Load dependencies in the following order via your document header
@@ -184,4 +186,6 @@ The "shape" key contains parameters to draw svg tables by 3 different types: "ci
 
 ## ILLUSTRATOR WORKFLOW
 
-Since this plugin can only draw shapes based off of svg parameters you pass to it, we need to use illustrator to draw our svg map template in order to figure out those parameters. The reason we had to build it this way is because IOS can not interact with a map rendered from a full svg. It needs to draw each shape by itself in order to be able to manipulate it later. For example, tap events and color changes on tables.   
+Since this plugin can only draw shapes based off of svg parameters you pass to it, we need to use illustrator to draw our svg map template in order to figure out those parameters. The reason we had to build it this way is because IOS can not interact with a map rendered from a full svg. It needs to draw each shape by itself in order to be able to manipulate it later. For example, tap events and color changes on tables.
+
+
