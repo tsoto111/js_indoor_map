@@ -181,3 +181,7 @@ The "shape" key contains parameters to draw svg tables by 3 different types: "ci
 | path   | Int    | draws the shape with polygon path data.                 |
 
 **Note:** when getting path data, the shape needs to be exported with no whitespace around the graphic in illustrator.
+
+## ILLUSTRATOR WORKFLOW
+
+Since this plugin can only draw shapes based off of svg parameters you pass to it, we need to use illustrator to draw our svg map template in order to figure out those parameters. The reason we had to build it this way is because IOS can not interact with a map rendered from a full svg. It needs to draw each shape by itself in order to be able to manipulate it later. For example, tap events and color changes on tables.   
