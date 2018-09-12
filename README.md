@@ -192,3 +192,7 @@ Since this plugin can only draw shapes based off of svg parameters you pass to i
 1 ) Open Illustrator and set your document to the custom size of your svg map in pixels. For my example, I have set my width to 1440px and height to 955px.
 
 ![Document Size](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/document-size.png)
+
+2 ) Draw your map. Just be sure to create a rectangle at the bottom of the layer in order to get a shape which will give you the document's dimensions. Name your layers so it is easier to see which shapes are what when you export to svg.
+
+![Document Layer](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/document-layers.png)
