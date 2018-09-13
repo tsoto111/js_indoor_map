@@ -124,14 +124,10 @@
 				.height($shape_data.shape.height)
 				.attr('data-id',$shape_data.id);
 			
-			// Find x and y position
-			$rectangle_x = $shape_data.shape.x - ($shape_data.shape.width / 2);
-			$rectangle_y = 	$shape_data.shape.y - ($shape_data.shape.height / 2);
-			
 			if ($shape_data.id != 0) {
 				// If not background	
 				$rectangle
-					.move($rectangle_x,$rectangle_y)
+					.move($shape_data.shape.x,$shape_data.shape.y)
 					.fill($map_data.states[$table_state].fill)
 					.addClass('table');
 			} else {
@@ -186,11 +182,11 @@
 			$polygon_x = $shape_data.shape.x - ($polygon.bbox().width / 2);
 			$polygon_y = $shape_data.shape.y - ($polygon.bbox().height / 2);
 			
-			$polygon.move($polygon_x, $polygon_y);
+			//$polygon.move($polygon_x, $polygon_y);
 			
 			$group_drag.add($polygon);
 			
-			draw_label($rectangle, $shape_data);
+			draw_label($polygon, $shape_data);
 		}
 		
 		function shape_center($shape){
@@ -213,8 +209,16 @@
 				.addClass('label');
 						
 			// Find Label x and y position
-			$label_x = $shape_data.shape.x - ($shape_label.bbox().w / 2);
-			$label_y = $shape_data.shape.y - ($shape_label.bbox().h / 2);
+			if( $shape_data.shape.type == "rectangle") {
+				$label_x = ($shape_data.shape.x + ($shape.bbox().width / 2)) - ($shape_label.bbox().w / 2);
+				$label_y = ($shape_data.shape.y + ($shape.bbox().height / 2)) - ($shape_label.bbox().h / 2);
+			} else if ($shape_data.shape.type == "circle") {
+				$label_x = ($shape_data.shape.x) - ($shape_label.bbox().w / 2);
+				$label_y = ($shape_data.shape.y) - ($shape_label.bbox().h / 2);
+			} else if ($shape_data.shape.type == "polygon") {
+				$label_x = ($shape.bbox().cx) - ($shape_label.bbox().w / 2);
+				$label_y = ($shape.bbox().cy) - ($shape_label.bbox().h / 2);
+			}
 			
 			// Position Label
 			$shape_label.move($label_x, $label_y);

@@ -204,3 +204,53 @@ Since this plugin can only draw shapes based off of svg parameters you pass to i
 4 ) Now open the svg file in your favorite text editor. From here, we can start extracting our coordinates. 
 
 ![SVG Open File](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/svg-open-file.png)
+
+Notice that your layer name is the ID of the shape within the SVG. Also, the element wrapper tells you the type of shape the svg is drawing by type: rect, polygon, and circle. All of our data needed to draw our shape lives as attributes of the shape's element tag. 
+
+### Extracting Shape Data from SVG
+
+Here, we will go through each shape and give an example of extracting our draw data by type.
+
+#### rect
+```html 
+<rect id="C2" x="626" y="788" width="199" height="99" fill="#ae85d4"/>
+```
+Looking at this element, we can see that we are dealing with our Rectangular shape of C2. Our drawable data is **x coordinate**, **y coordinate**, **width**, and **height**. Fill will be controlled by our shapes state so this fill color is not important to us.
+
+Example of data structure:
+```javascript
+{
+	id:1,
+	name:"C2",
+	state:"default",
+	shape: {
+		type:"rectangle",
+		x: 626, 
+		y: 788, 
+		width:199,
+		height:99 
+	}
+},
+```
+
+#### circle
+```html
+<circle id="A1" cx="130.52" cy="300.41" r="24.59" fill="#ae85d4"/>
+```
+
+Same as above, we can see that we are dealing with a Circle table named A1. Our drawable data is **cx coordinate**, **cy coordinate**, and **radius**.
+
+Example of data structure:
+```javascript
+{
+	id:2,
+	name:"A1",
+	state:"default",
+	shape: {
+		type:"circle",
+		x: 130.52, 
+		y: 300.41, 
+		radius: 24.59 
+	}
+},
+```
