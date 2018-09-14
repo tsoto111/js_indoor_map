@@ -215,7 +215,7 @@ Here, we will go through each shape and give an example of extracting our draw d
 ```html 
 <rect id="C2" x="626" y="788" width="199" height="99" fill="#ae85d4"/>
 ```
-Looking at this element, we can see that we are dealing with our Rectangular shape of C2. Our drawable data is **x coordinate**, **y coordinate**, **width**, and **height**. Fill will be controlled by our shapes state so this fill color is not important to us.
+Looking at this element, we can see that we are dealing with our Rectangular shape of C2. Our drawable data is **x coordinate**, **y coordinate**, **width**, and **height**. Fill will be controlled by our shape's state so this fill color is not important to us.
 
 Example of data structure:
 ```javascript
