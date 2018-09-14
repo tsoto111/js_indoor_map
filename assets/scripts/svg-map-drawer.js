@@ -22,8 +22,6 @@
 			.addClass('group_zoom')
 			.add($group_drag);
 		
-		
-		
 		//Draw Background
 		$background_shape = draw_rectangle($background_data);
 		
@@ -175,15 +173,11 @@
 			
 			$polygon = $draw
 				.polygon($shape_data.shape.path)
+				.move($shape_data.shape.x,$shape_data.shape.y)
 				.addClass($shape_data.name + " shape-" + $shape_data.id + " table")
 				.fill($map_data.states[$table_state].fill)
 				.attr('data-id',$shape_data.id);
-			
-			$polygon_x = $shape_data.shape.x - ($polygon.bbox().width / 2);
-			$polygon_y = $shape_data.shape.y - ($polygon.bbox().height / 2);
-			
-			//$polygon.move($polygon_x, $polygon_y);
-			
+					
 			$group_drag.add($polygon);
 			
 			draw_label($polygon, $shape_data);
