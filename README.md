@@ -270,3 +270,7 @@ Polygons have a few more steps involved in order to correctly draw via the web a
 
 ![Active Windows Image](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/windows.png)
 
+2 ) Select the table that you want to draw. We need to record the **X Coordinate**, **Y Coordinate**, **Width**, and **Height** via the **Info** or **Properties** window. Make Sure you have selected the shape's point origin to be the top left corner via the Properties window **Transform** section. All polygons will be positioned and drawn via the top left corner!
+
+![Exporting Polygon Image](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/exporting_polygon_example.png)
+
