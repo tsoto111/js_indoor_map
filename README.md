@@ -254,3 +254,19 @@ Example of data structure:
 	}
 },
 ```
+
+#### polygon
+```html
+<polygon id="D1" points="140.8 35.8 140.8 9.2 114.2 9.2 107.7 0 42.3 0 35.8 9.2 9.2 9.2 9.2 35.8 0 42.3 0 107.7 9.2 114.2 9.2 140.8 35.8 140.8 42.3 150 107.7 150 114.2 140.8 140.8 140.8 140.8 114.2 150 107.7 150 42.3 140.8 35.8" fill="#ae85d4"/>
+```
+
+Polygons have a few more steps involved in order to correctly draw via the web and IOS. The only value that is important after exporting to an SVG is the **points** attribute. For every uniuqe table shape, you will need trim the artboard flush to the table and export the shape to an svg in the following way:
+
+1 ) Open your map in Illustrator and make sure you have access to the following windows:
+
+* Info: **Window > Info** 
+* Properties: **Window > Properties**
+* Layers: **Window > Layers**
+
+![Active Windows Image](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/window.png)
+
