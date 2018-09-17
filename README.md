@@ -274,3 +274,10 @@ Polygons have a few more steps involved in order to correctly draw via the web a
 
 ![Exporting Polygon Image](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/exporting_polygon_example.png)
 
+3 ) Next, we need to export the Polygon shape in order to extract it's **points** data. You will have to do this for every unique table shape. You can reuse point data for table shapes that are the same. You just need to record every table's position data. Select the shape you want to export to an svg and trim the artboard in the following way: 
+
+* Delete Every shape on the artboard except for the polygon you want to export. **EVEN THE BACKGROUND RECTANGLE**!
+* Select the Polygon
+* Click on `Object > Artboards > Fit to Selected Art` from the toolbar menu
+
+Then you can `Export As > SVG` and get your point data.
