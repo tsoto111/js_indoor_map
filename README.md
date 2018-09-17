@@ -268,5 +268,5 @@ Polygons have a few more steps involved in order to correctly draw via the web a
 * Properties: **Window > Properties**
 * Layers: **Window > Layers**
 
-![Active Windows Image](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/window.png)
+![Active Windows Image](https://github.com/tsoto111/js_indoor_map/blob/NMPrototype/assets/images/tutorial/windows.png)
 
