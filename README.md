@@ -67,44 +67,44 @@ This is an example of SVG Map Drawer jQuery plugin living in `/assets/scripts/sv
 $map_elements = {
 	"map_data": {
 		"background": {
-			id:0,
-			name: "background",
-			shape: {
-				type:"rectangle", 
-				x: 0, 
-				y: 0,
-				width:1440,
-				height:955, 
-				fill:"white"
+			"id":0,
+			"name": "background",
+			"shape": {
+				"type":"rectangle", 
+				"x": 0, 
+				"y": 0,
+				"width":1440,
+				"height":955, 
+				"fill":"white"
 			}
 		},
-		states: {
-			default: {
-				fill:"#ae85d4"
+		"states": {
+			"default": {
+				"fill":"#ae85d4"
 			},
-			reserved: {
-				fill:"#e65aaf"
+			"reserved": {
+				"fill":"#e65aaf"
 			},
-			hold: {
-				fill:"#facc00"
+			"hold": {
+				"fill":"#facc00"
 			},
-			selected: {
-				fill:"5fc883"
+			"selected": {
+				"fill":"5fc883"
 			},
 			...
 		}
 	},
 	"posts": [
 		{
-			id:1,
-			name:"A1",
-			state:"reserved",
-			shape: {
-				type:"circle",
-				x: 1130, 
-				y: 300, 
-				radius: 25, 
-				rotate:0, 
+			"id":1,
+			"name":"A1",
+			"state":"reserved",
+			"shape": {
+				"type":"circle",
+				"x": 1130, 
+				"y": 300, 
+				"radius": 25, 
+				"rotate":0, 
 			}
 		},
 		...
@@ -180,6 +180,8 @@ The "shape" key contains parameters to draw svg tables by 3 different types: "ci
 | type   | String | Defines the shape being drawn, in this case "polygon"   |
 | x      | Int    | X coordinate of the drawn shape                         |
 | y      | Int    | Y coordinate of the drawn shape                         |
+| width  | Int    | Width of shape, used in IOS to draw button outlet       |
+| height | Int    | Height of shape, used in IOS to draw button outlet      |
 | path   | Int    | draws the shape with polygon path data.                 |
 
 **Note:** when getting path data, the shape needs to be exported with no whitespace around the graphic in illustrator.
@@ -220,15 +222,15 @@ Looking at this element, we can see that we are dealing with our Rectangular sha
 Example of data structure:
 ```javascript
 {
-	id:1,
-	name:"C2",
-	state:"default",
-	shape: {
-		type:"rectangle",
-		x: 626, 
-		y: 788, 
-		width:199,
-		height:99 
+	"id":1,
+	"name":"C2",
+	"state":"default",
+	"shape": {
+		"type":"rectangle",
+		"x": 626, 
+		"y": 788, 
+		"width":199,
+		"height":99 
 	}
 },
 ```
@@ -243,14 +245,14 @@ Same as above, we can see that we are dealing with a Circle table named A1. Our 
 Example of data structure:
 ```javascript
 {
-	id:2,
-	name:"A1",
-	state:"default",
-	shape: {
-		type:"circle",
-		x: 130.52, 
-		y: 300.41, 
-		radius: 24.59 
+	"id":2,
+	"name":"A1",
+	"state":"default",
+	"shape": {
+		"type":"circle",
+		"x": 130.52, 
+		"y": 300.41, 
+		"radius": 24.59 
 	}
 },
 ```
